@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sasuke Fireball Jutsu</title>
+  <style>
+    body {margin:0;overflow:hidden;text-align:center;font-family:Arial;background:#fff;height:100vh;}
+    #sasuke {position:absolute;left:1px;top:50%;transform:translateY(-50%);width:500px;z-index:2;}
+    .fireball {position:absolute;top:20%;left:0;width:1000px;animation:move 4s linear forwards;z-index:1;}
+    @keyframes move {0% {transform: translateX(0); opacity:1;}100% {transform: translateX(50vw); opacity:0;}}
+  </style>
+</head>
+<body>
+  <h2>Press SPACE to Launch Sasuke Fireball Jutsu</h2>
+  <img id="sasuke" src="white.png">
+  <audio id="hand" src="hand.mp3"></audio>
+  <audio id="fireball" src="fireball.mp3"></audio>
+  <script>
+    const s=document.getElementById("sasuke"),
+          f=["white.png","sasuke1.png","sasuke2.png","sasuke3.png","sasuke4.png","sasuke5.png","sasuke6.png","sasukeee (2).png"],
+          hand=document.getElementById("hand"),
+          fireball=document.getElementById("fireball");
+
+    function launch(){
+      hand.currentTime=0; hand.play();
+      let i=0, t=setInterval(()=> {
+        s.src=f[i++];
+        if(i===f.length){
+          clearInterval(t);
+          const fb=document.createElement("img");
+          fb.src="fireball.png"; fb.className="fireball"; document.body.appendChild(fb);
+          fireball.currentTime=0; fireball.play();
+          setTimeout(()=>fb.remove(),4000);
+        }
+      },300);
+    }
+
+    document.body.onkeydown=e=>{if(e.code==="Space") launch();}
+  </script>
+</body>
+</html>

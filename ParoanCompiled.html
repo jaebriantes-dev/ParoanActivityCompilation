@@ -1,0 +1,405 @@
+<html>
+<head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f7f7f7;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .lab {
+            background: white;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.2);
+        }
+        .lab h2 {
+            margin-top: 0;
+        }
+        .placeholder {
+            background: #eee;
+            padding: 10px;
+            border-radius: 6px;
+            font-family: Consolas, monospace;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Paroan Compilation of Laboratory Activities (Lab 08 – Lab 13)</h1>
+
+    <div class="lab">
+        <h2>Lab 08 - Part 1</h2>
+
+
+
+        <div class="placeholder">
+
+        <h3>LabExer8-JZP</h3>
+
+        <div>
+            <button onclick="prev()">⟨ Prev</button>
+            <img id="slider" src="1.JPG" height="200px">
+            <button onclick="next()">Next ⟩</button>
+        </div>
+
+        <p id="Count">Image 1 of 8</p>
+        </div>
+
+
+        <div class="placeholder">
+ <script>
+            var images = [
+                "1.JPG",
+                "2.JPG",
+                "3.JPG",
+                "4.JPG",
+                "5.JPG",
+                "6.JPG",
+                "7.JPG",
+                "8.JPG"
+            ];
+
+            var num = 0;
+
+            function updateSlider() {
+                var slider = document.getElementById("slider");
+                var counter = document.getElementById("Count");
+
+                slider.src = images[num];
+                counter.textContent = "Image " + (num + 1) + " of " + images.length;
+            }
+
+            function next() {
+                num++;
+                if (num >= images.length) {
+                    num = 0;
+                }
+                updateSlider();
+            }
+
+            function prev() {
+                num--;
+                if (num < 0) {
+                    num = images.length - 1;
+                }
+                updateSlider();
+            }
+
+            updateSlider();
+        </script>
+        </div>
+    </div>
+
+
+  <div class="lab">
+    <h2>Lab 08 - Part 2</h2>
+
+    <div id="sasuke-container">
+
+        <h2>Press "Q" to Launch Sasuke Fireball Jutsu</h2> 
+
+        <img id="sasuke" src="white.png">
+
+        <audio id="hand" src="hand.mp3"></audio>
+        <audio id="fireball" src="fireball.mp3"></audio>
+
+    </div>
+
+    <style>
+        #sasuke-container {
+            width: 100%;
+            height: 500px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            margin-top: 20px;
+            background: #fafafa;
+        }
+
+        #sasuke {
+            width: 300px;       
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            z-index: 2;
+        }
+
+        .fireball {
+            position: absolute;
+            top: 20%;            
+            left: 0;
+            width: 500px;
+            animation: move 4s linear forwards;
+            z-index: 1;
+        }
+
+        @keyframes move {
+            0% { transform: translateX(0); opacity: 1; }
+            100% { transform: translateX(50vw); opacity: 0; }
+        }
+    </style>
+
+    <script>
+        const s = document.getElementById("sasuke"),
+              f = [
+                  "white.png","sasuke1.png","sasuke2.png","sasuke3.png",
+                  "sasuke4.png","sasuke5.png","sasuke6.png","sasukeee (2).png"
+              ],
+              hand = document.getElementById("hand"),
+              fireball = document.getElementById("fireball");
+
+        function launch() {
+            hand.currentTime = 0;
+            hand.play();
+
+            let i = 0;
+            let t = setInterval(() => {
+                s.src = f[i++];
+                if (i === f.length) {
+                    clearInterval(t);
+
+                    const fb = document.createElement("img");
+                    fb.src = "fireball.png";
+                    fb.className = "fireball";
+                    document.getElementById("sasuke-container").appendChild(fb);
+
+                    fireball.currentTime = 0;
+                    fireball.play();
+
+                    setTimeout(() => fb.remove(), 4000);
+                }
+            }, 300);
+        }
+
+        document.body.onkeydown = e => {
+            if (e.code === "KeyQ") launch(); 
+        };
+    </script>
+</div>
+
+
+
+    <div class="lab">
+        <h2>Lab 09</h2>
+
+        <div class="placeholder">
+        <h2>Heading</h2>
+        <p>I will vanish</p>
+        <p>if you click me!</p>
+        <button>Click me!</button>
+        </div>
+
+        <p>Insert your JavaScript here:</p>
+        <div class="placeholder">
+        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $("button").click(function(){
+                    // hide tag "p" (paragraphs)
+                    $("p").hide();
+                });
+            });
+        </script>
+        </div>
+    </div>
+
+
+    <div class="lab">
+        <h2>Lab 10</h2>
+
+
+        <div class="placeholder">
+        <p id="demo">Hello</p>
+        </div>
+
+        <div class="placeholder">
+ <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $("#demo").append(" Jake Martin Zarate Paroan");
+
+                var txtVal = $("<p></p>").text("Good morning");
+                $("#demo").after(txtVal);
+            });
+        </script>
+        </div>
+    </div>
+
+
+    <div class="lab">
+        <h2>Lab 11</h2>
+        <div class="placeholder">
+<div id="lab11-container">
+    <div id="sampleDiv1" style="background-color: yellow;">
+        <p>I am Jake</p>
+    </div>
+
+    <div>
+        <p>I am Jake</p>
+    </div>
+
+    <div>
+        <p>I am Jake</p>
+    </div>
+</div>
+
+        <div class="placeholder">
+<script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+
+        <script>
+$("#lab11-container #sampleDiv1").css("background-color", "yellow");
+
+$("#lab11-container p").css({
+    "background-color": "green",
+    "width": "400px"
+});
+
+        </script>
+        </div>
+    </div>
+
+    <div class="lab">
+        <h2>Lab 12</h2>
+
+<div class="lab" id="lab12-container">
+    <h2>Lab 12</h2>
+
+    <div class="ancestors">
+        <div>Jake DIV (great-grandparent)
+            <ul>Jake UL (grandparent)
+                <li>Jake LI (direct parent)
+                    <span>Hello Im Jakes SPAN element</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function(){
+            const container = $("#lab12-container");
+
+            container.find("span").parentsUntil(container).css({
+                "color": "#ff4444",
+                "border": "2px solid #ff4444"
+            });
+
+            container.find("span").css({
+                "background": "#ffcc00",
+                "color": "black",
+                "padding": "15px",
+                "border-radius": "12px",
+                "text-align": "center"
+            });
+
+            container.find("li").css({
+                "background": "#333",
+                "border": "2px solid #00c3ff"
+            });
+
+            container.find("ul").css({
+                "border": "2px solid #7aff7a",
+                "background": "#1d3d1d"
+            });
+
+            container.find("div").css({
+                "border": "2px solid #bd7aff"
+            });
+
+            container.find(".ancestors *").hover(
+                function () { $(this).css("transform","scale(1.05)"); },
+                function () { $(this).css("transform","scale(1)"); }
+            );
+        });
+    </script>
+
+    <style>
+        #lab12-container * { box-sizing: border-box; }
+        #lab12-container .ancestors * { padding:10px; margin:10px; display:block; border-radius:8px; }
+        #lab12-container span { font-size:20px; font-weight:bold; }
+    </style>
+</div>
+
+
+<div class="lab" id="lab13-container">
+    <h2>Lab 13</h2>
+
+    <div class="menu">
+        <div id="lab13-item">My Favorite Links</div>
+        <div id="lab13-submenu">
+            <a href="https://www.youtube.com" target="_blank">YouTube</a>
+            <a href="https://www.facebook.com" target="_blank">Facebook</a>
+            <a href="https://www.google.com" target="_blank">Google</a>
+            <a href="https://www.roblox.com" target="_blank">Roblox</a>
+            <a href="https://www.github.com" target="_blank">GitHub</a>
+            <a href="https://www.sti.edu" target="_blank">STI Website</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        $(function() {
+            const container = $("#lab13-container");
+
+            container.find("#lab13-item").click(function() {
+                container.find("#lab13-submenu").slideToggle(500);
+            });
+
+            container.find("#lab13-submenu a").hover(
+                function() { $(this).fadeTo(200, 0.5); },
+                function() { $(this).fadeTo(200, 1); }
+            );
+
+            container.find("#lab13-submenu a").click(function() {
+                alert("Opening: " + $(this).text());
+            });
+
+            container.find(".menu").hide().fadeIn(800);
+        });
+    </script>
+
+    <style>
+        #lab13-container .menu {
+            width: 220px;
+            background: white;
+            padding: 10px;
+            border: 1px solid green;
+        }
+
+        #lab13-container #lab13-item {
+            background: #FFFFFF;
+            color: green;
+            padding: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #lab13-container #lab13-submenu {
+            margin-top: 10px;
+            display: none;
+        }
+
+        #lab13-container #lab13-submenu a {
+            display: block;
+            padding: 6px;
+            text-decoration: none;
+            color: green;
+        }
+
+        #lab13-container #lab13-submenu a:hover {
+            background: purple;
+        }
+    </style>
+</div>
+
+</body>
+</html>
