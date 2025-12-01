@@ -42,57 +42,68 @@
 
         <h3>LabExer8-JZP</h3>
 
-        <div>
-            <button onclick="prev()">⟨ Prev</button>
-            <img id="slider" src="1.JPG" height="200px">
-            <button onclick="next()">Next ⟩</button>
-        </div>
+<div class="lab" id="lab08-1-container">
+    <h2>Lab 08 - Part 1</h2>
 
-        <p id="Count">Image 1 of 8</p>
-        </div>
+    <div class="slider-container">
+        <button id="prev-btn">⟨ Prev</button>
+        <img id="slider" src="1.JPG" height="200px">
+        <button id="next-btn">Next ⟩</button>
+    </div>
 
+    <p id="slider-count">Image 1 of 8</p>
+</div>
 
-        <div class="placeholder">
- <script>
-            var images = [
-                "1.JPG",
-                "2.JPG",
-                "3.JPG",
-                "4.JPG",
-                "5.JPG",
-                "6.JPG",
-                "7.JPG",
-                "8.JPG"
-            ];
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const container = document.getElementById("lab08-1-container");
 
-            var num = 0;
+    const images = [
+        "1.JPG","2.JPG","3.JPG","4.JPG",
+        "5.JPG","6.JPG","7.JPG","8.JPG"
+    ];
 
-            function updateSlider() {
-                var slider = document.getElementById("slider");
-                var counter = document.getElementById("Count");
+    let num = 0;
 
-                slider.src = images[num];
-                counter.textContent = "Image " + (num + 1) + " of " + images.length;
-            }
+    const slider = container.querySelector("#slider");
+    const counter = container.querySelector("#slider-count");
+    const prevBtn = container.querySelector("#prev-btn");
+    const nextBtn = container.querySelector("#next-btn");
 
-            function next() {
-                num++;
-                if (num >= images.length) {
-                    num = 0;
-                }
-                updateSlider();
-            }
+    function updateSlider() {
+        slider.src = images[num];
+        counter.textContent = "Image " + (num + 1) + " of " + images.length;
+    }
 
-            function prev() {
-                num--;
-                if (num < 0) {
-                    num = images.length - 1;
-                }
-                updateSlider();
-            }
+    nextBtn.addEventListener("click", function() {
+        num++;
+        if (num >= images.length) num = 0;
+        updateSlider();
+    });
 
-            updateSlider();
-        </script>
+    prevBtn.addEventListener("click", function() {
+        num--;
+        if (num < 0) num = images.length - 1;
+        updateSlider();
+    });
+
+    updateSlider();
+});
+</script>
+
+<style>
+#lab08-1-container .slider-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+#lab08-1-container img {
+    border: 1px solid #ccc;
+}
+</style>
+
         </div>
     </div>
 
@@ -189,25 +200,25 @@
     <div class="lab">
         <h2>Lab 09</h2>
 
-        <div class="placeholder">
-        <h2>Heading</h2>
-        <p>I will vanish</p>
-        <p>if you click me!</p>
-        <button>Click me!</button>
-        </div>
+<div class="lab" id="lab09-container">
+    <h2>Lab 09</h2>
+    <p>Clicking this would hide me!</p>
+    <p>Do not Click</p>
+    <button>Click me!</button>
+</div>
 
-        <p>Insert your JavaScript here:</p>
-        <div class="placeholder">
-        <script src="https://code.jquery.com/jquery-3.1.1.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script>
+$(function(){
+    const container = $("#lab09-container");
 
-        <script>
-            $(document).ready(function(){
-                $("button").click(function(){
-                    // hide tag "p" (paragraphs)
-                    $("p").hide();
-                });
-            });
-        </script>
+    container.find("button").click(function(){
+        container.find("p").hide(); // only affects Lab 09 paragraphs
+    });
+});
+</script>
+
+
         </div>
     </div>
 
